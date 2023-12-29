@@ -38,6 +38,38 @@ const getAllUsers = async (req, res) => {
   }
 };
 
+/**
+ * @function getAllCampaigns
+ * @description Fetches user by ID from the database.
+ * @param {object} req - Express request object.
+ * @param {object} res - Express response object.
+ * @returns {object} JSON response with an array of campaigns.
+ * @throws {object} JSON response with an error message if an error occurs.
+ */
+const getUserById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const query = "SELECT * FROM user WHERE userID=?";
+
+    const [results] = await db.promise().query(query, [id]);
+
+    if (results.length === 0) {
+      return res.status(200).json({ message: "No User with that ID" });
+    }
+
+    const users = results.map((user) => {
+      (username = user.username), (email = user.email);
+    });
+
+    return res.status(200).json(users);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
 module.exports = {
   getAllUsers,
+  getUserById,
 };

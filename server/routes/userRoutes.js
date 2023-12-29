@@ -14,7 +14,13 @@ const userController = require("../controllers/userControllers");
  * @description Retrieves all Users
  * @access Public
  */
-
 router.get("/all", userController.getAllUsers);
+
+/**
+ * @route GET /api/user/:id
+ * @description Retrieves User by ID
+ * @access Public
+ */
+router.get("/:id", userController.getUserById);
 
 module.exports = router;
