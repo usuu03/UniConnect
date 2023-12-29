@@ -15,11 +15,6 @@ const db = mysql2.createConnection({
   database: process.env.DB_DATABASE, // Your database name
 });
 
-console.log(process.env.DB_HOST);
-console.log(process.env.DB_USER);
-console.log(process.env.DB_PASSWORD);
-console.log(process.env.DB_DATABASE);
-console.log(process.env.PORT);
 db.connect((err) => {
   if (err) {
     console.error("Database connection failed:", err);
