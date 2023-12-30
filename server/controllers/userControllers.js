@@ -11,7 +11,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 /**
- * @function getAllCampaigns
+ * @function getAllUsers
  * @description Fetches all users from the database.
  * @param {object} req - Express request object.
  * @param {object} res - Express response object.
@@ -39,7 +39,7 @@ const getAllUsers = async (req, res) => {
 };
 
 /**
- * @function getAllCampaigns
+ * @function getUserById
  * @description Fetches user by ID from the database.
  * @param {object} req - Express request object.
  * @param {object} res - Express response object.
@@ -69,7 +69,37 @@ const getUserById = async (req, res) => {
   }
 };
 
+/**
+ * @function register
+ * @description Inserts new User into the database
+ * @param {object} req - Express request object.
+ * @param {object} res - Express response object.
+ * @returns {object} JSON response with an array of campaigns.
+ * @throws {object} JSON response with an error message if an error occurs.
+ */
+const register = async (req, res) => {
+  try {
+    const { username, email, password } = req.body;
+
+    //Hashing password
+    const hashPassword = await bcrypt.hash(password, 10);
+
+    const query =
+      "INSERT INTO user (username, email, password) VALUES (?, ?, ?)";
+
+    const [results] = await db
+      .promise()
+      .query(query, [username, email, hashPassword]);
+
+    res.status(201).json({ message: "Registration successful" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server" });
+  }
+};
+
 module.exports = {
   getAllUsers,
   getUserById,
+  register,
 };

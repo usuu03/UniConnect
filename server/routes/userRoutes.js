@@ -23,4 +23,11 @@ router.get("/all", userController.getAllUsers);
  */
 router.get("/:id", userController.getUserById);
 
+/**
+ * @route GET /api/user/register
+ * @description Adds user to the database
+ * @access Public
+ */
+router.post("/register", userController.register);
+
 module.exports = router;
