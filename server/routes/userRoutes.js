@@ -8,6 +8,7 @@
 const express = require("express");
 const router = express.Router();
 const userController = require("../controllers/userControllers");
+const { authentication } = require("../middleware/authentication");
 
 /**
  * @route GET /api/user/all
@@ -36,5 +37,19 @@ router.post("/register", userController.register);
  * @access Public
  */
 router.post("/login", userController.login);
+
+/**
+ * @route GET /api/user/update-user
+ * @description Updates the user details and saves it to the database
+ * @access Private - needs to be authenticated
+ */
+router.put("/update-user", authentication, userController.updateUser);
+
+/**
+ * @route GET /api/user/delete-user
+ * @description Deletes a user from the Database
+ * @access Private - needs to be authenticated
+ */
+router.delete("delete-user", authentication, userController.deleteUser);
 
 module.exports = router;
