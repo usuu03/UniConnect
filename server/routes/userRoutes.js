@@ -30,4 +30,11 @@ router.get("/:id", userController.getUserById);
  */
 router.post("/register", userController.register);
 
+/**
+ * @route GET /api/user/login
+ * @description Checks if user is in the database and logs them in
+ * @access Public
+ */
+router.post("/login", userController.login);
+
 module.exports = router;
