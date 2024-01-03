@@ -27,11 +27,7 @@ const getAllUsers = async (req, res) => {
       return res.status(404).json({ message: "No Users in the Database" });
     }
 
-    const users = results.map((user) => {
-      (userID = user.userID), (username = user.username), (email = user.email);
-    });
-
-    res.status(200).json(users);
+    res.status(200).json(results);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal Server Error" });
@@ -72,24 +68,36 @@ const getUserById = async (req, res) => {
 /**
  * @function register
  * @description Inserts new User into the database
- * @param {object} req - Express request object.
- * @param {object} res - Express response object.
- * @returns {object} JSON response with an array of campaigns.
- * @throws {object} JSON response with an error message if an error occurs.
  */
 const register = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const {
+      username,
+      email,
+      password,
+      firstName,
+      lastName,
+      academicInformation,
+      interests,
+    } = req.body;
 
     //Hashing password
     const hashPassword = await bcrypt.hash(password, 10);
 
     const query =
-      "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
+      "INSERT INTO users (username, email, password, firstName, lastName, academicInformation, interests) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     const [results] = await db
       .promise()
-      .query(query, [username, email, hashPassword]);
+      .query(query, [
+        username,
+        email,
+        hashPassword,
+        firstName,
+        lastName,
+        academicInformation,
+        interests,
+      ]);
 
     res.status(201).json({ message: "Registration successful" });
   } catch (error) {
@@ -101,10 +109,7 @@ const register = async (req, res) => {
 /**
  * @function login
  * @description Logs user into system
- * @param {object} req - Express request object.
- * @param {object} res - Express response object.
- * @returns {object} JSON response with an array of campaigns.
- * @throws {object} JSON response with an error message if an error occurs.
+ *
  */
 const login = async (req, res) => {
   try {
@@ -145,6 +150,11 @@ const login = async (req, res) => {
     }
   }
 };
+
+/**
+ * @function updateUser
+ * @description Updates the User Details
+ */
 
 module.exports = {
   getAllUsers,
