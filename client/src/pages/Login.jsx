@@ -1,6 +1,7 @@
 import { Button, TextInput } from "keep-react";
 import { Lock, User } from "phosphor-react";
 import React from "react";
+import { Link } from "react-router-dom";
 import "../styles/login.css";
 
 export default function Login() {
@@ -15,12 +16,6 @@ export default function Login() {
         <form className="mt-8 space-y-6">
           <div>
             <div className="mb-2">
-              <label
-                htmlFor="username"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Username
-              </label>
               <div className="mt-1">
                 <TextInput
                   id="username"
@@ -35,12 +30,6 @@ export default function Login() {
               </div>
             </div>
             <div>
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Password
-              </label>
               <div className="mt-1">
                 <TextInput
                   id="password"
@@ -67,6 +56,15 @@ export default function Login() {
             </Button>
           </div>
         </form>
+        <p className="mt-1 text-center text-sm text-gray-600">
+          Don't have an Account?{" "}
+          <Link
+            to="/register"
+            className="font-medium text-indigo-600 hover:text-indigo-500"
+          >
+            Sign Up
+          </Link>
+        </p>
       </div>
     </div>
   );
