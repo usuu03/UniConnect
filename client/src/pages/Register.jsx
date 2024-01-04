@@ -16,11 +16,13 @@ export default function Registration() {
     <div className="min-h-screen flex items-center justify-center">
       <div className="max-w-md w-full p-6 space-y-6">
         <div>
+          {/* Registration Header */}
           <h2 className="text-center text-3xl font-extrabold text-success-500">
             Create your account
           </h2>
         </div>
         <form className="mt-8 space-y-6">
+          {/* Grid for Name Fields */}
           <div className="grid grid-cols-2 gap-4">
             <div className="mb-2">
               {/* First Name Input Field */}
@@ -54,9 +56,10 @@ export default function Registration() {
             </div>
           </div>
 
+          {/* Grid for Email and Username Fields */}
           <div className="grid grid-cols-2 gap-4">
             <div className="mb-2">
-              {/* Email  Input Field */}
+              {/* Email Input Field */}
               <div className="mt-1">
                 <TextInput
                   id="email"
@@ -70,7 +73,7 @@ export default function Registration() {
                 />
               </div>
             </div>
-            {/* Username  Input Field */}
+            {/* Username Input Field */}
             <div className="mb-2">
               <div className="mt-1">
                 <TextInput
@@ -86,6 +89,7 @@ export default function Registration() {
             </div>
           </div>
 
+          {/* Grid for Password Fields */}
           <div className="grid grid-cols-2 gap-4">
             <div className="mb-2">
               {/* Password Input Field */}
@@ -103,7 +107,7 @@ export default function Registration() {
               </div>
             </div>
             <div className="mb-2">
-              {/* Password Input Field */}
+              {/* Confirm Password Input Field */}
               <div className="mt-1">
                 <TextInput
                   id="confirmPassword"
@@ -119,7 +123,7 @@ export default function Registration() {
             </div>
           </div>
 
-          {/* Educational Institution Input Field */}
+          {/* Academic Information Input Field */}
           <div className="mb-2">
             <div className="mt-1">
               <TextInput
@@ -135,6 +139,7 @@ export default function Registration() {
             </div>
           </div>
 
+          {/* Interests Input Field */}
           <div className="mb-2">
             <div className="mt-1">
               <TextInput
@@ -150,6 +155,7 @@ export default function Registration() {
             </div>
           </div>
 
+          {/* Register Button */}
           <div>
             <Button
               size="lg"
@@ -162,6 +168,7 @@ export default function Registration() {
           </div>
         </form>
 
+        {/* Sign In Link */}
         <p className="mt-1 text-center text-sm text-gray-600">
           Already have an account?{" "}
           <Link

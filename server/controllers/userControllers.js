@@ -120,7 +120,7 @@ const login = async (req, res) => {
     const user = results[0];
 
     //Checking the password by using bcrypt
-    const match = await bcrypt.compare(password.trim(), user.password);
+    const match = await bcrypt.compare(password, user.password);
 
     if (match) {
       //Generating a JWT token if password matches
